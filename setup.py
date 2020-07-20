@@ -25,6 +25,8 @@ class build_ext(distutils.command.build_ext.build_ext):
         if sys.platform == "win32" and self.compiler.compiler_type == "mingw32":
             ext.sources.append("source/bases/manifest.rc")
         os.environ["LD_RUN_PATH"] = "${ORIGIN}:${ORIGIN}/../lib:${ORIGIN}/lib"
+        print('---', self.__dict__)
+        print(ext.__dict__)
         objects = self.compiler.compile(ext.sources,
                 output_dir = self.build_temp,
                 include_dirs = ext.include_dirs,
@@ -38,6 +40,7 @@ class build_ext(distutils.command.build_ext.build_ext):
         libraryDirs = ext.library_dirs or []
         libraries = self.get_libraries(ext)
         extraArgs = ext.extra_link_args or []
+        print('LOCALS', locals())
         if sys.platform == "win32":
             compiler_type = self.compiler.compiler_type
             if compiler_type == "msvc":
