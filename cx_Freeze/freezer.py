@@ -180,7 +180,7 @@ class Freezer(object):
 
         # Copy the python dynamic libraries
         copyDependentFiles = True
-        if sys.platform == "linux":
+        if sys.platform == "linux" or sys.platform == "darwin":
             # Always copy the python dynamic libraries into lib folder
             targetDir = os.path.join(os.path.dirname(exe.targetName), 'lib')
             dependentFiles = self._GetDependentFiles(exe.base) or \
