@@ -72,7 +72,7 @@ class build_ext(distutils.command.build_ext.build_ext):
                 extraArgs.extend(vars["LOCALMODLIBS"].split())
             if sys.platform == "darwin":
                 extraArgs.append("-shared-libgcc")
-                extraArgs.append(vars["BLDLIBRARY"])
+                extraArgs.append(vars["LDLIBRARY"])
             else:
                 extraArgs.append("-s")
         self.compiler.link_executable(objects, fullName,
