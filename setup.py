@@ -27,6 +27,7 @@ class build_ext(distutils.command.build_ext.build_ext):
         os.environ["LD_RUN_PATH"] = "${ORIGIN}:${ORIGIN}/../lib:${ORIGIN}/lib"
         print('---', self.__dict__)
         print(ext.__dict__)
+        os.environ["CFLAGS"] = distutils.sysconfig.get_config_var("BASECFLAGS")
         objects = self.compiler.compile(ext.sources,
                 output_dir = self.build_temp,
                 include_dirs = ext.include_dirs,
