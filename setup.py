@@ -38,6 +38,7 @@ class build_ext(distutils.command.build_ext.build_ext):
         libraryDirs = ext.library_dirs or []
         libraries = self.get_libraries(ext)
         extraArgs = ext.extra_link_args or []
+        print('extraArgs', extraArgs)
         if sys.platform == "win32":
             compiler_type = self.compiler.compiler_type
             if compiler_type == "msvc":
@@ -68,6 +69,7 @@ class build_ext(distutils.command.build_ext.build_ext):
             if sys.platform == "darwin":
                 extraArgs.append("-shared-libgcc")
             extraArgs.append("-s")
+        print('extraArgs', extraArgs)
         self.compiler.link_executable(objects, fullName,
                 libraries = libraries,
                 library_dirs = libraryDirs,
